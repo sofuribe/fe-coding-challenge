@@ -21,7 +21,7 @@ You can start editing the project by modifying `pages/index.js` and `pages/profi
 
 The goal of this assessment is to determine how well you're able to ingest API data and turn it into a working web app.
 
-To begin, you'll want to get familiar with the [Github Users API](https://docs.github.com/en/rest/users/users#get-a-user). It is a free and publicly available API which allows users to request publicly available Github user data. It does not require authentication to use.
+To begin, you'll want to get familiar with the [Github Users API](https://docs.github.com/en/rest/users/users#get-a-user). It is a free and publicly available API which allows users to request publicly available Github user data. It does require authentication to use, please generate a personal access token before getting started.
 
 Your objective in this challenge is to create a navigable, fully-responsive list of Github users in the browser with the visual treatment represented below:
 
