@@ -2,7 +2,7 @@
 
 This is a basic [Gatsby](https://www.gatsbyjs.com/) project. You have free reign to setup the project in any way you would like. Install as many packages or fonts as you wish. There are no limitations in that regard. The purpose of this exercise is to allow us to get some insight into your coding style, code quality, and organizational skills.
 
-Please note, before starting this assessment, message Nadina Gray or Michael Marina on Upwork to say you are starting, and please message either Nadina Gray or Michael Marina on Upwork to say when you are finishing the assessment. 
+Please note, before starting this assessment, message Nadina Gray or Michael Marina to say you are starting, and please message either Nadina Gray or Michael Marina on Upwork to say when you are finishing the assessment. 
 ## Getting Started
 
 ```bash
@@ -35,7 +35,7 @@ Your objective in this challenge is to create a navigable, fully-responsive list
 
 # Notes
 
-Since this project is bootstrapped with [Gatsby](https://www.gatsbyjs.com/), you should use Gatsby's `Image` and `Link` components in this challenge. Link is built in, and see [Gatsby Plugin Image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image).
+Since this project is bootstrapped with [Gatsby](https://www.gatsbyjs.com/), you should use Gatsby's `Image` and `Link` components in this challenge. Link is built in, and see [Gatsby Plugin Image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image). Do not use Gatsby's gatsby-node API's to query the API via graphql, please query the REST API within your components themselves.
 
 We do not assume you know Gatsby but we do assume you understand how routing works. You will want to get familiar with the way Gatsby handles routes.
 
@@ -45,7 +45,9 @@ Good luck and happy coding!
 
 How long should this take? Roughly 1 to 2 hours depending on how involved you choose to make it.
 
-Please clone this repository, and make sure [Nadina Gray](https://github.com/nadinagray) and our [DevOps account](https://github.com/SoulmatesDevOps) have permissions to see repo.
+## Submission 
+
+Please make a PR to this repository with your work. Please include a small write-up in markdown, either as a separate file or addendum to this README walking through any necessary steps to set up your code, or explaining your work.
 
 ## More About Gatsby
 
