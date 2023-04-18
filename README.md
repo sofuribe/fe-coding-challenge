@@ -47,7 +47,7 @@ How long should this take? Roughly 1 to 2 hours depending on how involved you ch
 
 ## Submission 
 
-Please make a PR to this repository with your work. Please include a small write-up in markdown, either as a separate file or addendum to this README walking through any necessary steps to set up your code, or explaining your work.
+Please make a PR to this repository with your work. Please include a small write-up in markdown, either as a separate file or addendum to this README walking through any necessary steps to set up your code, or explaining your work. We should be able to pull down and run your code without any errors.
 
 ## More About Gatsby
 
@@ -57,4 +57,4 @@ To learn more about Gatsby, take a look at the following resources:
 - [Gatsby API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
 ## Bonus Points
-Use SASS and CSS modules. Add tests.
+Use Tailwind CSS. Add tests. Deploy a version of this site.
