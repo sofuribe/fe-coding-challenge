@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "gatsby"
 
-const UserProfile = ({ location }) => {
+const UserProfile = () => {
+  const { username } = useParams()
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`https://api.github.com/users/${location.state.username}`, {
+        const response = await fetch(`https://api.github.com/users/${username}`, {
           headers: {
             Authorization: `Bearer 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`
           }
         });
-        const data = await response.json();
-        setUser(data);
+        if (response.okay) {
+          const data = await response.json();
+          setUser(data);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     fetchUser();
-  }, [location]);
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  }, [username]);
 
   return (
     <div>
@@ -37,3 +37,5 @@ const UserProfile = ({ location }) => {
 };
 
 export default UserProfile;
+
+export const Head = () => <title>User</title>

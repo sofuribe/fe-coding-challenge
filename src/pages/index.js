@@ -1,6 +1,8 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
-import { navigate } from 'gatsby'
+// import { navigate } from 'gatsby'
+import { Link } from "gatsby"
+import {navigate} from "@reach/router"
 
 const IndexPage = () => {
   const [users, setUsers] = useState([])
@@ -33,22 +35,41 @@ const IndexPage = () => {
     fetchUsers()
   }, [])
 
+  const [search, setSearch] = useState("")
+
   return (
     <>
       <div className="bg-slate-100 mx-auto px-12 py-10">
-        <h1 className="p-3 pl-4 text-white text-4xl m-3 bg-blue-900 rounded-2xl font-bold">Github Users</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {users.map(user => (
-              <div className="my-5 mx-8 p-3 bg-white hover:-translate-y-2 shadow-xl rounded-lg overflow-hidden flex flex-col items-center justify-center" key={user.id}>
+      <div className="flex flex-col md:flex-row items-center justify-between bg-black rounded-2xl p-3">
+        <h1 className="text-white text-4xl font-bold mb-3 md:mb-0 md:mr-3 md:ml-2">Github Users</h1>
+          <div className="input-group mb-2 md:mx-3 md:mt-1">
+            <input
+              onChange={(event) => setSearch(event.target.value)}
+              type="text"
+              className="rounded-md p-2 focus:outline-none focus:ring focus:ring-gray-200"
+              placeholder="Search by name..."
+              aria-label="search"
+            />
+          </div>
+        </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+            {users.filter((user) => {
+              return search === "" ? true : user.name.toLowerCase().includes(search.toLowerCase())
+            }).map(user => (
+              <div className="my-5 mx-10 p-3 bg-white md:hover:-translate-y-2 shadow-xl rounded-lg overflow-hidden flex flex-col items-center justify-center" key={user.id}>
                 <img className="w-40 h-40 mt-6 rounded-full object-cover" src={user.avatar_url} alt={user.name} />
                 <div className="p-4">
                   <h2 className="mt-2 font-bold text-2xl">{user.name}</h2>
                   <p className="text-gray-700 text-md text-center">@{user.login}</p>
                 </div>
-                <button className="mb-5 p-2 text-white px-4 text-md bg-blue-900 hover:bg-blue-950 rounded-2xl"
-                  // onClick={() => navigate(`/profile/${user.login}`, { state: { username: user.login } })}
-                  onClick={() => navigate(`/profile/${user.login}`)}> View Profile
-                </button>
+                {/* <Link to={`/profile/${user.login}`}> */}
+                  <button className="mb-5 p-2 text-white px-4 text-md bg-green-900 hover:bg-green-950 rounded-2xl"
+                    onClick={() => navigate(`/profile/${user.login}`, { state: { username: user.login } })}>View Profile
+                    {/* // onClick={() => navigate(`/profile/${user.login}`)} */}
+                    {/* onClick={() => navigate(`/user/${user.login}`)} */}
+                    {/* // onClick={() => navigate(`/profile/${user.login}`, { state: { username: user.login }, pathname: `/profile/${user.login}` })} */}
+                  </button>
+                {/* </Link> */}
               </div>
             ))}
           </div>
@@ -59,4 +80,4 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => <title>Github User Viewer - Coding Challenge</title>
+export const Head = () => <title>Github User Viewer</title>
