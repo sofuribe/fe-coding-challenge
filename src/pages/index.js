@@ -1,11 +1,11 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
-// import { navigate } from 'gatsby'
 import { Link } from "gatsby"
-import {navigate} from "@reach/router"
 
 const IndexPage = () => {
   const [users, setUsers] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -27,22 +27,20 @@ const IndexPage = () => {
           usersData.push(await userResponse.json())
         }
         setUsers(usersData)
+        setIsLoading(false);
       } catch (error) {
         console.log(error)
       }
   }
-
     fetchUsers()
   }, [])
 
-  const [search, setSearch] = useState("")
-
   return (
     <>
-      <div className="bg-slate-100 mx-auto px-12 py-10">
-      <div className="flex flex-col md:flex-row items-center justify-between bg-black rounded-2xl p-3">
+      <div className="bg-slate-100 min-h-screen mx-auto px-16 py-10">
+      <div className="flex flex-col md:flex-row items-center justify-between bg-black rounded-2xl p-4">
         <h1 className="text-white text-4xl font-bold mb-3 md:mb-0 md:mr-3 md:ml-2">Github Users</h1>
-          <div className="input-group mb-2 md:mx-3 md:mt-1">
+          <div className="input-group md:mx-3 ">
             <input
               onChange={(event) => setSearch(event.target.value)}
               type="text"
@@ -52,7 +50,10 @@ const IndexPage = () => {
             />
           </div>
         </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+        {isLoading ? (
+          <p className="text-center text-xl mt-5">Loading...</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
             {users.filter((user) => {
               return search === "" ? true : user.name.toLowerCase().includes(search.toLowerCase())
             }).map(user => (
@@ -62,17 +63,15 @@ const IndexPage = () => {
                   <h2 className="mt-2 font-bold text-2xl">{user.name}</h2>
                   <p className="text-gray-700 text-md text-center">@{user.login}</p>
                 </div>
-                {/* <Link to={`/profile/${user.login}`}> */}
-                  <button className="mb-5 p-2 text-white px-4 text-md bg-green-900 hover:bg-green-950 rounded-2xl"
-                    onClick={() => navigate(`/profile/${user.login}`, { state: { username: user.login } })}>View Profile
-                    {/* // onClick={() => navigate(`/profile/${user.login}`)} */}
-                    {/* onClick={() => navigate(`/user/${user.login}`)} */}
-                    {/* // onClick={() => navigate(`/profile/${user.login}`, { state: { username: user.login }, pathname: `/profile/${user.login}` })} */}
+                <Link to={`/profile?id=${user.login}`} state={{ user: user}}>
+                  <button className="mb-5 p-2 text-white px-4 text-md bg-green-900 hover:bg-green-950 rounded-2xl">
+                      View Profile
                   </button>
-                {/* </Link> */}
+                </Link>
               </div>
             ))}
           </div>
+        )}
       </div>
     </>
   );
